@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 def scrape_website(website):
     print("Launching chrome browser...")
     
-    chrome_driver_path = "./chromedriver.exe"
+    chrome_driver_path = "./drivers/chromedriver.exe"
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
     driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)

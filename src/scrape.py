@@ -1,22 +1,26 @@
 import time
 import selenium.webdriver as webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.firefox.service import Service
 from bs4 import BeautifulSoup
+from selenium.webdriver import FirefoxOptions
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 def scrape_website(website):
     print("Launching chrome browser...")
     
-    chrome_driver_path = "./drivers/chromedriver.exe"
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
-    driver = webdriver.Chrome(service=Service(chrome_driver_path), options=options)
+    options = FirefoxOptions()
+    options.add_argument("-headless")
+    driver = webdriver.Firefox(options=options)
     
     try: 
         driver.get(website)
+        
         print("Page loaded...")
+        
         html = driver.page_source
-        time.sleep(10)
+        time.sleep(5)
         
         return html
     finally:

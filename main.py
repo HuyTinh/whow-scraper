@@ -20,7 +20,7 @@ if st.button("Scrape Site"):
         st.session_state.dom_content = cleaned_content
         
         with st.expander("View DOM Content"):
-            st.text_area("DOM Content", cleaned_content, height=300, disabled=True)
+            st.text_area("DOM Content", cleaned_content, height=300)
 
 if "dom_content" in st.session_state:
     parse_description = st.text_area("Descrive what you want to parse?")
@@ -30,6 +30,6 @@ if "dom_content" in st.session_state:
             st.write("Parsing the content")
             
             dom_chunks = src.split_dom_content(st.session_state.dom_content)
-            result = src.parse_with_ollama(dom_chunks=dom_chunks, parse_description=parse_description)
-            print(f"Dữ liệu nè: {result}")
-            st.write(result)
+            parsed_result = src.parse_with_ollama(dom_chunks, parse_description)
+            print(f"Dữ liệu nè: {parsed_result}")
+            st.write(parsed_result)
